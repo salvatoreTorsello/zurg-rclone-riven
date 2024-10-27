@@ -1,2 +1,4 @@
-data
+data/*
 riven-db
+
+!data/settings.json

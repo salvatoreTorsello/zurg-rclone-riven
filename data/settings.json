@@ -1,0 +1,576 @@
+{
+    "version": "0.16.2",
+    "debug": true,
+    "log": true,
+    "force_refresh": false,
+    "map_metadata": true,
+    "tracemalloc": false,
+    "symlink": {
+        "rclone_path": "/mnt/media-server/remote/realdebrid/torrents",
+        "library_path": "/mnt/media-server/plex",
+        "separate_anime_dirs": true,
+        "repair_symlinks": false,
+        "repair_interval": 6.0
+    },
+    "updaters": {
+        "updater_interval": 120,
+        "plex": {
+            "enabled": true,
+            "token": "v3XAEW7Uozv3mXUgLzU-",
+            "url": "http://192.168.1.22:32400"
+        },
+        "jellyfin": {
+            "enabled": false,
+            "api_key": "",
+            "url": "http://localhost:8096"
+        },
+        "emby": {
+            "enabled": false,
+            "api_key": "",
+            "url": "http://localhost:8096"
+        }
+    },
+    "downloaders": {
+        "video_extensions": [
+            "mp4",
+            "mkv",
+            "avi"
+        ],
+        "prefer_speed_over_quality": true,
+        "real_debrid": {
+            "enabled": true,
+            "api_key": "Z746YUV2BYLJTQKQIZGR6RZS6D647W46QJBJR44UGDH2UR7SF3ZQ",
+            "proxy_enabled": false,
+            "proxy_url": ""
+        },
+        "all_debrid": {
+            "enabled": false,
+            "api_key": "",
+            "proxy_enabled": false,
+            "proxy_url": ""
+        },
+        "torbox": {
+            "enabled": false,
+            "api_key": ""
+        }
+    },
+    "content": {
+        "overseerr": {
+            "update_interval": 30,
+            "enabled": false,
+            "url": "",
+            "api_key": "",
+            "use_webhook": false
+        },
+        "plex_watchlist": {
+            "update_interval": 10,
+            "enabled": true,
+            "rss": []
+        },
+        "mdblist": {
+            "update_interval": 300,
+            "enabled": false,
+            "api_key": "",
+            "lists": []
+        },
+        "listrr": {
+            "update_interval": 300,
+            "enabled": false,
+            "movie_lists": [],
+            "show_lists": [],
+            "api_key": ""
+        },
+        "trakt": {
+            "update_interval": 300,
+            "enabled": false,
+            "api_key": "",
+            "watchlist": [],
+            "user_lists": [],
+            "collection": [],
+            "fetch_trending": false,
+            "trending_count": 10,
+            "fetch_popular": false,
+            "popular_count": 10
+        }
+    },
+    "scraping": {
+        "after_2": 1.0,
+        "after_5": 3,
+        "after_10": 12,
+        "parse_debug": false,
+        "enable_aliases": true,
+        "torrentio": {
+            "enabled": true,
+            "filter": "sort=qualitysize",
+            "url": "http://torrentio.strem.fun",
+            "timeout": 30,
+            "ratelimit": true
+        },
+        "knightcrawler": {
+            "enabled": true,
+            "filter": "sort=qualitysize",
+            "url": "https://knightcrawler.elfhosted.com",
+            "timeout": 30,
+            "ratelimit": true
+        },
+        "jackett": {
+            "enabled": false,
+            "url": "http://localhost:9117",
+            "api_key": "",
+            "timeout": 10,
+            "ratelimit": false
+        },
+        "prowlarr": {
+            "enabled": false,
+            "url": "http://localhost:9696",
+            "api_key": "",
+            "timeout": 10,
+            "ratelimit": false,
+            "limiter_seconds": 60
+        },
+        "orionoid": {
+            "enabled": false,
+            "api_key": "",
+            "cached_results_only": false,
+            "parameters": {
+                "video3d": "false",
+                "videoquality": "sd_hd8k",
+                "limitcount": 5
+            },
+            "timeout": 10,
+            "ratelimit": false
+        },
+        "annatar": {
+            "enabled": false,
+            "url": "https://annatar.elfhosted.com",
+            "limit": 2000,
+            "timeout": 10,
+            "ratelimit": false
+        },
+        "torbox_scraper": {
+            "enabled": false,
+            "timeout": 30
+        },
+        "mediafusion": {
+            "enabled": false,
+            "url": "https://mediafusion.elfhosted.com",
+            "timeout": 10,
+            "ratelimit": false,
+            "catalogs": []
+        },
+        "zilean": {
+            "enabled": false,
+            "url": "http://localhost:8181",
+            "timeout": 30,
+            "ratelimit": false
+        },
+        "comet": {
+            "enabled": false,
+            "url": "http://localhost:8000",
+            "indexers": [],
+            "timeout": 30,
+            "ratelimit": false
+        }
+    },
+    "ranking": {
+        "profile": "default",
+        "require": [],
+        "exclude": [],
+        "preferred": [],
+        "resolutions": {
+            "2160p": true,
+            "1080p": true,
+            "720p": true,
+            "480p": false,
+            "360p": false,
+            "unknown": false
+        },
+        "options": {
+            "title_similarity": 0.85,
+            "remove_all_trash": true,
+            "remove_ranks_under": -10000,
+            "remove_unknown_languages": false,
+            "allow_english_in_languages": true
+        },
+        "languages": {
+            "required": [],
+            "exclude": [
+                "es",
+                "de",
+                "fr",
+                "ru"
+            ],
+            "preferred": [
+                "it",
+                "anime"
+            ]
+        },
+        "custom_ranks": {
+            "quality": {
+                "av1": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "avc": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "bluray": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "dvd": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "hdtv": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "hevc": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "mpeg": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "remux": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "vhs": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "web": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "webdl": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "webmux": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "xvid": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                }
+            },
+            "rips": {
+                "bdrip": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "brrip": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "dvdrip": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "hdrip": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "ppvrip": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "satrip": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "tvrip": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "uhdrip": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "vhsrip": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "webdlrip": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "webrip": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                }
+            },
+            "hdr": {
+                "10bit": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "dolby_vision": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "hdr": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "hdr10plus": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "sdr": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                }
+            },
+            "audio": {
+                "aac": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "ac3": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "atmos": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "dolby_digital": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "dolby_digital_plus": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "dts_lossy": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "dts_lossless": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "eac3": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "flac": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "mono": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "mp3": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "stereo": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "surround": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "truehd": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                }
+            },
+            "extras": {
+                "3d": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "converted": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "documentary": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "dubbed": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "edition": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "hardcoded": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "network": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "proper": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "repack": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "retail": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "site": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "subbed": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "upscaled": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                }
+            },
+            "trash": {
+                "cam": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "clean_audio": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "pdtv": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "r5": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "screener": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "size": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "telecine": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                },
+                "telesync": {
+                    "fetch": false,
+                    "use_custom_rank": false,
+                    "rank": 0
+                }
+            }
+        }
+    },
+    "indexer": {
+        "update_interval": 60
+    },
+    "database": {
+        "host": "postgresql+psycopg2://postgres:postgres@riven-db/riven"
+    },
+    "notifications": {
+        "enabled": false,
+        "title": "Riven completed something",
+        "on_item_type": [],
+        "service_urls": []
+    },
+    "post_processing": {
+        "subliminal": {
+            "enabled": true,
+            "languages": [
+                "eng",
+                "ita"
+            ],
+            "providers": {
+                "opensubtitles": {
+                    "enabled": false,
+                    "username": "",
+                    "password": ""
+                },
+                "opensubtitlescom": {
+                    "enabled": false,
+                    "username": "",
+                    "password": ""
+                }
+            }
+        }
+    }
+}
