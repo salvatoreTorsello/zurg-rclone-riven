@@ -23,6 +23,7 @@ services:
       - /mnt/media-server/remote/realdebrid:/data:rshared
       - ./rclone.conf:/config/rclone/rclone.conf
       - /mnt:/mnt
+      - /mnt/media-server/cache:/cache
     cap_add:
       - SYS_ADMIN
     security_opt:
@@ -39,7 +40,7 @@ services:
       zurg:
         condition: service_healthy
         restart: true
-    command: "mount zurg: /data --allow-non-empty --allow-other --uid=1000 --gid=1000 --umask=002 --dir-cache-time 10s"
+    command: "mount zurg: /data --allow-non-empty --allow-other --uid=1000 --gid=1000 --umask=002 --dir-cache-time 1000h --poll-interval 15s --vfs-cache-mode full --vfs-cache-max-age 24h --vfs-cache-max-size 50G --vfs-read-chunk-size 64M --vfs-read-chunk-size-limit 1G --vfs-cache-poll-interval 1m --vfs-write-back 5s --cache-dir /cache"
 
   riven-frontend:
     image: spoked/riven-frontend:latest
