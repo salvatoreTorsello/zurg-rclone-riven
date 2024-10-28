@@ -1,8 +1,7 @@
 services:
   zurg:
-    image: ghcr.io/debridmediamanager/zurg-testing:v0.9.3-final
+    image: ghcr.io/debridmediamanager/zurg-testing:latest
     container_name: zurg
-    restart: unless-stopped
     healthcheck:
       test: curl -f localhost:9999/dav/version.txt || exit 1
     ports:
@@ -14,7 +13,6 @@ services:
   rclone:
     image: rclone/rclone:latest
     container_name: rclone
-    restart: unless-stopped
     environment:
       TZ: Europe/Berlin
       PUID: 1000
@@ -42,29 +40,29 @@ services:
         restart: true
     command: "mount zurg: /data --allow-non-empty --allow-other --uid=1000 --gid=1000 --umask=002 --dir-cache-time 1000h --poll-interval 15s --vfs-cache-mode full --vfs-cache-max-age 24h --vfs-cache-max-size 50G --vfs-read-chunk-size 64M --vfs-read-chunk-size-limit 1G --vfs-cache-poll-interval 1m --vfs-write-back 5s --cache-dir /cache"
 
-  riven-frontend:
-    image: spoked/riven-frontend:latest
-    container_name: riven-frontend
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    tty: true
+  riven_postgres:
+    image: postgres:16.3-alpine3.20
+    container_name: riven-db
     environment:
-      - PUID=1000
-      - PGID=1000
-      - ORIGIN=http://192.168.1.22:3000  # Set to IP or FQDN of the server
-      - BACKEND_URL=http://riven:8080
-      - DIALECT=postgres
-      - DATABASE_URL=postgres://postgres:postgres@riven-db/riven
-      - TZ=Europe/Rome
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: riven
+    volumes:
+      - ./riven-db:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     depends_on:
-      riven:
+      rclone:
+        restart: true
         condition: service_healthy
 
   riven:
     image: spoked/riven:latest
     container_name: riven
-    restart: unless-stopped
     ports:
       - "8080:8080"
     tty: true
@@ -87,25 +85,22 @@ services:
         condition: service_healthy
         restart: true
 
-  riven_postgres:
-    image: postgres:16.3-alpine3.20
-    container_name: riven-db
-    restart: unless-stopped
+  riven-frontend:
+    image: spoked/riven-frontend:latest
+    container_name: riven-frontend
+    ports:
+      - "3000:3000"
+    tty: true
     environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: riven
-    volumes:
-      - ./riven-db:/var/lib/postgresql/data/pgdata
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      - PUID=1000
+      - PGID=1000
+      - ORIGIN=http://192.168.1.22:3000  # Set to IP or FQDN of the server
+      - BACKEND_URL=http://riven:8080
+      - DIALECT=postgres
+      - DATABASE_URL=postgres://postgres:postgres@riven-db/riven
+      - TZ=Europe/Rome
     depends_on:
-      rclone:
-        restart: true
+      riven:
         condition: service_healthy
 
 volumes:

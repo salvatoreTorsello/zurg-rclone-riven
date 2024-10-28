@@ -1,0 +1,14 @@
+[Unit]
+Description=Zurg RClone Riven Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=forking
+WorkingDirectory=/opt/zurg-rclone-riven
+ExecStart=/usr/bin/docker compose -f /opt/zurg-rclone-riven/docker-compose.yml up 
+ExecStop=/usr/bin/docker compose -f /opt/zurg-rclone-riven/docker-compose.yml down
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
