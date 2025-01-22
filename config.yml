@@ -1,31 +1,33 @@
-# Zurg configuration version
+# Zurg configuration version (default: "v1")
 zurg: v1
-token: Z746YUV2BYLJTQKQIZGR6RZS6D647W46QJBJR44UGDH2UR7SF3ZQ
+
+# Your Real-Debrid API token (required)
+token: JPR2UGWRYWDW2AHFUYC7QYY5B5MYTJG3BNLHPU5ED6UOWEDDDZLQ
+
+# Host address to bind to (default: "[::]")
 host: "[::]"
 # port: 9999
 # username:
 # password:
 # proxy:
-concurrent_workers: 32
+
+# Retry 503 errors specifically
+retry_503_errors: false
+
+# Enable automatic torrent repair
+enable_repair: true
+
+# How often to check for changes in the library (default: 15 seconds)
 check_for_changes_every_secs: 10
-# repair_every_mins: 60
+
+# Will ignore rename values in the torrent
 ignore_renames: true
+
+# Retain the name value of a torrent from real-debrid (if false, will use original_name instead)
 retain_rd_torrent_name: true
+
+# Retain the torrent name extension which is used for directory names (useful for single file torrents)
 retain_folder_name_extension: true
-enable_repair: false
-auto_delete_rar_torrents: false
-get_torrents_count: 5000
-# api_timeout_secs: 15
-# download_timeout_secs: 10
-# enable_download_mount: false
-# rate_limit_sleep_secs: 6
-# retries_until_failed: 2
-# network_buffer_size: 4194304 # 4MB
-# serve_from_rclone: false
-# verify_download_link: false
-# force_ipv6: false
-directories:
-  torrents:
-    group: 1
-    filters:
-      - regex: /.*/
+
+# Enable debug log level
+log_level: debug

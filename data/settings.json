@@ -1,28 +1,30 @@
 {
-    "version": "0.16.2",
+    "version": "0.20.1",
+    "api_key": "mLxKhkVXz6Dm5tok51A8gjhlKD9cIAje",
     "debug": true,
+    "debug_database": false,
     "log": true,
     "force_refresh": false,
     "map_metadata": true,
     "tracemalloc": false,
     "symlink": {
-        "rclone_path": "/mnt/media-server/remote/realdebrid/torrents",
-        "library_path": "/mnt/media-server/plex",
+        "rclone_path": "/mnt/media-server/remote/realdebrid/__all__",
+        "library_path": "/mnt/media-server/remote/symlinks",
         "separate_anime_dirs": true,
-        "repair_symlinks": false,
-        "repair_interval": 6.0
+        "repair_symlinks": true,
+        "repair_interval": 3.0
     },
     "updaters": {
-        "updater_interval": 120,
+        "updater_interval": 10,
         "plex": {
-            "enabled": true,
-            "token": "v3XAEW7Uozv3mXUgLzU-",
-            "url": "http://192.168.1.22:32400"
+            "enabled": false,
+            "token": "",
+            "url": "http://192.168.96.202:32400"
         },
         "jellyfin": {
-            "enabled": false,
-            "api_key": "",
-            "url": "http://localhost:8096"
+            "enabled": true,
+            "api_key": "2f84cb7a8058488ca6b4b30e3c726955",
+            "url": "http://192.168.96.202:8096"
         },
         "emby": {
             "enabled": false,
@@ -36,18 +38,18 @@
             "mkv",
             "avi"
         ],
-        "prefer_speed_over_quality": true,
+        "movie_filesize_mb_min": -1,
+        "movie_filesize_mb_max": -1,
+        "episode_filesize_mb_min": 0,
+        "episode_filesize_mb_max": -1,
+        "proxy_url": "",
         "real_debrid": {
             "enabled": true,
-            "api_key": "Z746YUV2BYLJTQKQIZGR6RZS6D647W46QJBJR44UGDH2UR7SF3ZQ",
-            "proxy_enabled": false,
-            "proxy_url": ""
+            "api_key": "JPR2UGWRYWDW2AHFUYC7QYY5B5MYTJG3BNLHPU5ED6UOWEDDDZLQ"
         },
         "all_debrid": {
             "enabled": false,
-            "api_key": "",
-            "proxy_enabled": false,
-            "proxy_url": ""
+            "api_key": ""
         },
         "torbox": {
             "enabled": false,
@@ -64,7 +66,7 @@
         },
         "plex_watchlist": {
             "update_interval": 10,
-            "enabled": true,
+            "enabled": false,
             "rss": []
         },
         "mdblist": {
@@ -90,28 +92,39 @@
             "fetch_trending": false,
             "trending_count": 10,
             "fetch_popular": false,
-            "popular_count": 10
+            "popular_count": 10,
+            "fetch_most_watched": false,
+            "most_watched_period": "weekly",
+            "most_watched_count": 10,
+            "oauth": {
+                "oauth_client_id": "",
+                "oauth_client_secret": "",
+                "oauth_redirect_uri": "",
+                "access_token": "",
+                "refresh_token": ""
+            }
         }
     },
     "scraping": {
         "after_2": 1.0,
         "after_5": 3,
         "after_10": 12,
-        "parse_debug": false,
+        "parse_debug": true,
         "enable_aliases": true,
+        "bucket_limit": 5,
         "torrentio": {
             "enabled": true,
-            "filter": "sort=qualitysize",
+            "filter": "sort=qualitysize%7Cqualityfilter=480p,scr,cam",
             "url": "http://torrentio.strem.fun",
             "timeout": 30,
             "ratelimit": true
         },
         "knightcrawler": {
-            "enabled": true,
-            "filter": "sort=qualitysize",
-            "url": "https://knightcrawler.elfhosted.com",
+            "enabled": false,
+            "filter": "sort=qualitysize%7Cqualityfilter=480p,scr,cam,unknown",
+            "url": "https://knightcrawler.elfhosted.com/",
             "timeout": 30,
-            "ratelimit": true
+            "ratelimit": false
         },
         "jackett": {
             "enabled": false,
@@ -140,15 +153,9 @@
             "timeout": 10,
             "ratelimit": false
         },
-        "annatar": {
-            "enabled": false,
-            "url": "https://annatar.elfhosted.com",
-            "limit": 2000,
-            "timeout": 10,
-            "ratelimit": false
-        },
         "torbox_scraper": {
             "enabled": false,
+            "api_key": "",
             "timeout": 30
         },
         "mediafusion": {
@@ -178,30 +185,33 @@
         "exclude": [],
         "preferred": [],
         "resolutions": {
-            "2160p": false,
-            "1080p": true,
-            "720p": true,
-            "480p": false,
-            "360p": false,
-            "unknown": false
+            "r2160p": false,
+            "r1080p": true,
+            "r720p": true,
+            "r480p": false,
+            "r360p": false,
+            "unknown": true
         },
         "options": {
-            "title_similarity": 0.85,
+            "title_similarity": 0.8,
             "remove_all_trash": true,
             "remove_ranks_under": -10000,
             "remove_unknown_languages": false,
-            "allow_english_in_languages": true
+            "allow_english_in_languages": true,
+            "enable_fetch_speed_mode": true,
+            "remove_adult_content": true
         },
         "languages": {
             "required": [],
             "exclude": [
-                "es",
-                "de",
-                "fr",
-                "ru"
+                "ar",
+                "hi",
+                "ru",
+                "pt"
             ],
             "preferred": [
                 "it",
+                "en",
                 "anime"
             ]
         },
@@ -280,7 +290,7 @@
                     "rank": 0
                 },
                 "brrip": {
-                    "fetch": false,
+                    "fetch": true,
                     "use_custom_rank": false,
                     "rank": 0
                 },
@@ -290,7 +300,7 @@
                     "rank": 0
                 },
                 "hdrip": {
-                    "fetch": false,
+                    "fetch": true,
                     "use_custom_rank": false,
                     "rank": 0
                 },
@@ -331,13 +341,13 @@
                 }
             },
             "hdr": {
-                "10bit": {
+                "bit10": {
                     "fetch": true,
                     "use_custom_rank": false,
                     "rank": 0
                 },
                 "dolby_vision": {
-                    "fetch": true,
+                    "fetch": false,
                     "use_custom_rank": false,
                     "rank": 0
                 },
@@ -430,7 +440,7 @@
                 }
             },
             "extras": {
-                "3d": {
+                "three_d": {
                     "fetch": false,
                     "use_custom_rank": false,
                     "rank": 0
@@ -494,6 +504,11 @@
                     "fetch": false,
                     "use_custom_rank": false,
                     "rank": 0
+                },
+                "scene": {
+                    "fetch": true,
+                    "use_custom_rank": false,
+                    "rank": 0
                 }
             },
             "trash": {
@@ -541,7 +556,7 @@
         }
     },
     "indexer": {
-        "update_interval": 60
+        "update_interval": 3600
     },
     "database": {
         "host": "postgresql+psycopg2://postgres:postgres@riven-db/riven"

@@ -38,7 +38,7 @@ services:
       zurg:
         condition: service_healthy
         restart: true
-    command: "mount zurg: /data --allow-non-empty --allow-other --uid=1000 --gid=1000 --umask=002 --dir-cache-time 1000h --poll-interval 15s --vfs-cache-mode full --vfs-cache-max-age 24h --vfs-cache-max-size 50G --vfs-read-chunk-size 64M --vfs-read-chunk-size-limit 1G --vfs-cache-poll-interval 1m --vfs-write-back 5s --cache-dir /cache"
+    command: "mount zurg: /data --allow-non-empty --allow-other --uid=1000 --gid=1000 --umask=002 --dir-cache-time 10s --poll-interval 10s --vfs-cache-mode full --vfs-cache-max-age 24h --vfs-cache-max-size 50G --vfs-read-chunk-size 64M --vfs-read-chunk-size-limit 1G --vfs-cache-poll-interval 1m --vfs-write-back 5s --cache-dir /cache --rc --log-level DEBUG"
 
   riven_postgres:
     image: postgres:16.3-alpine3.20
@@ -94,7 +94,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - ORIGIN=http://192.168.1.22:3000  # Set to IP or FQDN of the server
+      - ORIGIN=http://localhost:3000  # Set to IP or FQDN of the server
       - BACKEND_URL=http://riven:8080
       - DIALECT=postgres
       - DATABASE_URL=postgres://postgres:postgres@riven-db/riven
