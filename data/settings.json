@@ -1,5 +1,5 @@
 {
-    "version": "0.20.1",
+    "version": "0.21.0",
     "api_key": "mLxKhkVXz6Dm5tok51A8gjhlKD9cIAje",
     "debug": true,
     "debug_database": false,
@@ -38,20 +38,16 @@
             "mkv",
             "avi"
         ],
-        "movie_filesize_mb_min": -1,
+        "movie_filesize_mb_min": 0,
         "movie_filesize_mb_max": -1,
         "episode_filesize_mb_min": 0,
         "episode_filesize_mb_max": -1,
         "proxy_url": "",
         "real_debrid": {
             "enabled": true,
-            "api_key": "JPR2UGWRYWDW2AHFUYC7QYY5B5MYTJG3BNLHPU5ED6UOWEDDDZLQ"
+            "api_key": "*****"
         },
         "all_debrid": {
-            "enabled": false,
-            "api_key": ""
-        },
-        "torbox": {
             "enabled": false,
             "api_key": ""
         }
@@ -112,12 +108,14 @@
         "parse_debug": true,
         "enable_aliases": true,
         "bucket_limit": 5,
+        "max_failed_attempts": 0,
         "torrentio": {
             "enabled": true,
             "filter": "sort=qualitysize%7Cqualityfilter=480p,scr,cam",
             "url": "http://torrentio.strem.fun",
             "timeout": 30,
-            "ratelimit": true
+            "ratelimit": true,
+            "proxy_url": ""
         },
         "knightcrawler": {
             "enabled": false,
@@ -153,21 +151,15 @@
             "timeout": 10,
             "ratelimit": false
         },
-        "torbox_scraper": {
-            "enabled": false,
-            "api_key": "",
-            "timeout": 30
-        },
         "mediafusion": {
             "enabled": false,
             "url": "https://mediafusion.elfhosted.com",
             "timeout": 10,
-            "ratelimit": false,
-            "catalogs": []
+            "ratelimit": false
         },
         "zilean": {
-            "enabled": false,
-            "url": "http://localhost:8181",
+            "enabled": true,
+            "url": "http://192.168.96.202:8181",
             "timeout": 30,
             "ratelimit": false
         },
@@ -207,7 +199,11 @@
                 "ar",
                 "hi",
                 "ru",
-                "pt"
+                "pt",
+                "pl",
+                "hi",
+                "cs",
+                "bg"
             ],
             "preferred": [
                 "it",

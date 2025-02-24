@@ -2,7 +2,7 @@
 zurg: v1
 
 # Your Real-Debrid API token (required)
-token: JPR2UGWRYWDW2AHFUYC7QYY5B5MYTJG3BNLHPU5ED6UOWEDDDZLQ
+token: *****
 
 # Host address to bind to (default: "[::]")
 host: "[::]"

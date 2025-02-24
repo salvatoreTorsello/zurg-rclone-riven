@@ -94,7 +94,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - ORIGIN=http://localhost:3000  # Set to IP or FQDN of the server
+      - ORIGIN=https://rivenfe.salvohomecloud.duckdns.org  # Set to IP or FQDN of the server
       - BACKEND_URL=http://riven:8080
       - DIALECT=postgres
       - DATABASE_URL=postgres://postgres:postgres@riven-db/riven
